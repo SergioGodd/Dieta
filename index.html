@@ -3,120 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dieta Semanal — Sergio</title>
+<title>Dieta de la semana — Sergio</title>
 <style>
   :root{
-    --bg:#0f1115; --card:#171a21; --card2:#1d212a; --line:#262b36;
-    --txt:#e8eaed; --muted:#9aa3b0;
-    --accent:#5ad19b; --accent2:#69a7ff; --warn:#f3c969; --free:#f08a8a;
+    --bg:#f4efe6; --card:#ffffff; --ink:#23262b; --soft:#6c7280; --line:#e7e0d2;
+    --brand:#2f8f5b; --hoy:#f4a608; --hoybg:#fff7e6;
+    --c-desayuno:#e0702f; --c-media:#2f86c4; --c-almuerzo:#2f8f5b; --c-tarde:#c4892a; --c-noche:#5a5fb0;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.45;padding:24px 16px 60px}
-  .wrap{max-width:1100px;margin:0 auto}
-  header{text-align:center;margin-bottom:8px}
-  h1{font-size:1.7rem;letter-spacing:.3px}
-  .sub{color:var(--muted);font-size:.95rem;margin-top:4px}
-  .meta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 10px}
-  .pill{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.85rem;color:var(--muted)}
-  .pill b{color:var(--txt)}
-  .goal{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:12px 16px;margin:14px 0 26px;font-size:.92rem;color:var(--muted)}
-  .goal b{color:var(--txt)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-  .day{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
-  .day h2{font-size:1.05rem;padding:12px 16px;background:var(--card2);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-  .day h2 span{font-size:.72rem;font-weight:500;color:var(--accent2);background:rgba(105,167,255,.12);padding:3px 9px;border-radius:999px}
-  .day.free h2 span{color:var(--free);background:rgba(240,138,138,.12)}
-  .meal{padding:10px 16px;border-bottom:1px solid var(--line)}
+  body{background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:18px;line-height:1.5;padding:28px 18px 70px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto}
+
+  header{text-align:center;margin-bottom:6px}
+  h1{font-size:2.1rem;font-weight:800;letter-spacing:-.5px}
+  .dates{display:inline-block;margin-top:10px;background:var(--brand);color:#fff;
+    font-size:1.15rem;font-weight:700;padding:8px 20px;border-radius:999px}
+
+  .guide{background:#fffdf8;border:1px solid var(--line);border-left:6px solid var(--hoy);
+    border-radius:14px;padding:18px 22px;margin:22px auto 30px;max-width:900px;font-size:1.08rem;line-height:1.6}
+  .guide .t{font-weight:800;font-size:1.15rem;display:block;margin-bottom:6px}
+  .guide b{color:var(--ink)}
+  .mark{background:var(--hoy);color:#fff;font-weight:800;padding:1px 9px;border-radius:6px;font-size:.95em}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+
+  .day{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    box-shadow:0 2px 6px rgba(40,30,10,.05);display:flex;flex-direction:column}
+  .day .head{padding:16px 20px;border-bottom:2px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .day .head h2{font-size:1.5rem;font-weight:800;display:flex;align-items:center;gap:10px}
+  .tag{font-size:.82rem;font-weight:700;color:var(--soft);background:#f1ece1;
+    padding:4px 12px;border-radius:999px;white-space:nowrap}
+  .hoy-badge{background:var(--hoy);color:#fff;font-weight:800;font-size:.85rem;
+    padding:3px 12px;border-radius:999px;letter-spacing:.5px}
+
+  .day.today{border:3px solid var(--hoy);box-shadow:0 4px 16px rgba(244,166,8,.25)}
+  .day.today .head{background:var(--hoybg)}
+
+  .meal{display:flex;gap:13px;padding:13px 20px;border-bottom:1px solid #f1ece1}
   .meal:last-child{border-bottom:none}
-  .meal .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:3px}
-  .meal .food{font-size:.93rem}
-  footer{text-align:center;color:var(--muted);font-size:.8rem;margin-top:32px}
+  .bar{width:6px;border-radius:6px;flex:none}
+  .meal .body{flex:1}
+  .meal .lbl{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px}
+  .meal .food{font-size:1.16rem;line-height:1.4;color:var(--ink)}
+
+  .d .bar{background:var(--c-desayuno)} .d .lbl{color:var(--c-desayuno)}
+  .m .bar{background:var(--c-media)}    .m .lbl{color:var(--c-media)}
+  .a .bar{background:var(--c-almuerzo)} .a .lbl{color:var(--c-almuerzo)}
+  .t .bar{background:var(--c-tarde)}    .t .lbl{color:var(--c-tarde)}
+  .n .bar{background:var(--c-noche)}    .n .lbl{color:var(--c-noche)}
+
+  .free-body{padding:34px 20px;text-align:center;color:var(--soft);font-size:1.2rem;font-weight:700}
+
+  footer{text-align:center;color:var(--soft);font-size:.92rem;margin-top:34px}
+
+  @media (max-width:560px){
+    body{font-size:17px;padding:20px 12px 50px}
+    h1{font-size:1.7rem}
+    .meal .food{font-size:1.12rem}
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>🍽️ Dieta Semanal — Sergio</h1>
-    <div class="sub">Plan ejecutable para la semana</div>
+    <h1>🍽️ Dieta de la semana — Sergio</h1>
+    <!-- INICIO_FECHA -->
+    <div class="dates">Lunes 15 al Domingo 21 de junio</div>
+    <!-- FIN_FECHA -->
   </header>
 
+  <div class="guide">
+    <span class="t">👩‍🍳 Para mamá y la señora</span>
+    Esta es la comida de Sergio para la semana. <b>Cada tarjeta es un día.</b> Las comidas van en orden, de arriba hacia abajo: desayuno, media mañana, almuerzo, media tarde y noche. El día de hoy aparece marcado con <span class="mark">HOY</span> en amarillo para ubicarlo rápido. El <b>sábado es libre</b>: no hay que preparar nada. Si algo no se entiende, pregúntenle a Sergio.
+  </div>
+
   <!-- ====== INICIO MENÚ SEMANAL (esto se reemplaza cada semana) ====== -->
-  <div class="meta">
-    <div class="pill">Semana <b>1</b></div>
-    <div class="pill"><b>15 – 21 jun 2026</b></div>
-    <div class="pill">Fase: <b>Mantenimiento / comer más</b></div>
-    <div class="pill">Meta grasa: <b>13%</b></div>
-  </div>
-
-  <div class="goal">
-    <b>Cómo leer la semana:</b> Más comida que en el corte, con los carbohidratos al desayuno (post-gym 7am) y al almuerzo. Cenas de proteína + verdura. Grasa siempre en dosis chicas. <b>Cero azúcar agregada</b> salvo el sábado (día libre). La señora cocina lunes a viernes; domingo lo arma mamá, sencillo.
-  </div>
-
   <div class="grid">
 
-    <div class="day">
-      <h2>Lunes 15 <span>gym 7am</span></h2>
-      <div class="meal"><div class="lbl">Desayuno</div><div class="food">Jugo de papaya y piña + avena (½ taza cocida) + 3 claras y 1 yema</div></div>
-      <div class="meal"><div class="lbl">Media mañana</div><div class="food">Yogurt griego / skyr con arándanos</div></div>
-      <div class="meal"><div class="lbl">Almuerzo</div><div class="food">Pechuga a la plancha + camote + ensalada fresca</div></div>
-      <div class="meal"><div class="lbl">Media tarde</div><div class="food">3 jamón de pavo + manzana</div></div>
-      <div class="meal"><div class="lbl">Noche</div><div class="food">Filete de pescado + verduras salteadas</div></div>
+    <div class="day" data-date="2026-06-15">
+      <div class="head"><h2>Lunes 15</h2><span class="tag">Gym 7am</span></div>
+      <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo de papaya y piña + avena (½ taza cocida) + 3 claras y 1 yema</div></div></div>
+      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Yogurt griego con arándanos</div></div></div>
+      <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Pechuga a la plancha + camote + ensalada cocida</div></div></div>
+      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">3 jamón de pavo + manzana</div></div></div>
+      <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Filete de pescado + verduras salteadas</div></div></div>
     </div>
 
-    <div class="day">
-      <h2>Martes 16 <span>gym 7am</span></h2>
-      <div class="meal"><div class="lbl">Desayuno</div><div class="food">Jugo de fresa y arándanos + pan pita + queso fresco</div></div>
-      <div class="meal"><div class="lbl">Media mañana</div><div class="food">Skyr con chía y frambuesas</div></div>
-      <div class="meal"><div class="lbl">Almuerzo</div><div class="food">Bistec a la plancha + ¾ taza de arroz + ensalada cocida</div></div>
-      <div class="meal"><div class="lbl">Media tarde</div><div class="food">3 claras 1 yema + ¼ de palta</div></div>
-      <div class="meal"><div class="lbl">Noche</div><div class="food">Tortilla de zucchini y cebolla + ½ pechuga a la plancha</div></div>
+    <div class="day" data-date="2026-06-16">
+      <div class="head"><h2>Martes 16</h2><span class="tag">Gym 7am</span></div>
+      <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo de fresa y arándanos + pan pita + queso fresco</div></div></div>
+      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Skyr con chía y frambuesas</div></div></div>
+      <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Bistec a la plancha + ¾ taza de arroz + ensalada cocida</div></div></div>
+      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">3 claras 1 yema + ¼ de palta</div></div></div>
+      <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Tortilla de zucchini y cebolla + ½ pechuga a la plancha</div></div></div>
     </div>
 
-    <div class="day">
-      <h2>Miércoles 17 <span>gym 7am</span></h2>
-      <div class="meal"><div class="lbl">Desayuno</div><div class="food">Jugo de papaya y arándanos + avena (½ taza) + 3 jamón de pavo</div></div>
-      <div class="meal"><div class="lbl">Media mañana</div><div class="food">½ taza de piña + yogurt</div></div>
-      <div class="meal"><div class="lbl">Almuerzo</div><div class="food">Hamburguesa de atún + camote + ensalada fresca</div></div>
-      <div class="meal"><div class="lbl">Media tarde</div><div class="food">Queso fresco + mandarina</div></div>
-      <div class="meal"><div class="lbl">Noche</div><div class="food">Pollo saltado con verduras (poco aceite)</div></div>
+    <div class="day" data-date="2026-06-17">
+      <div class="head"><h2>Miércoles 17</h2><span class="tag">Gym 7am</span></div>
+      <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo de papaya y arándanos + avena (½ taza) + 3 jamón de pavo</div></div></div>
+      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">½ taza de piña + yogurt</div></div></div>
+      <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Hamburguesa de atún + camote + ensalada cocida</div></div></div>
+      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">Queso fresco + mandarina</div></div></div>
+      <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Pollo saltado con verduras (poco aceite)</div></div></div>
     </div>
 
-    <div class="day">
-      <h2>Jueves 18 <span>gym 7am</span></h2>
-      <div class="meal"><div class="lbl">Desayuno</div><div class="food">Jugo de piña y arándanos + pan pita + 3 claras 1 yema</div></div>
-      <div class="meal"><div class="lbl">Media mañana</div><div class="food">3 jamón de pavo + ½ pitahaya</div></div>
-      <div class="meal"><div class="lbl">Almuerzo</div><div class="food">Pescado a la plancha + 1 choclo + ensalada fresca</div></div>
-      <div class="meal"><div class="lbl">Media tarde</div><div class="food">Skyr con chía y canela</div></div>
-      <div class="meal"><div class="lbl">Noche</div><div class="food">Tortilla de espinacas + ½ lata de atún</div></div>
+    <div class="day" data-date="2026-06-18">
+      <div class="head"><h2>Jueves 18</h2><span class="tag">Gym 7am</span></div>
+      <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo de piña y arándanos + pan pita + 3 claras 1 yema</div></div></div>
+      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">3 jamón de pavo + ½ pitahaya</div></div></div>
+      <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Pescado a la plancha + 1 choclo + ensalada cocida</div></div></div>
+      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">Skyr con chía y canela</div></div></div>
+      <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Tortilla de espinacas + ½ lata de atún</div></div></div>
     </div>
 
-    <div class="day">
-      <h2>Viernes 19 <span>fontón tarde</span></h2>
-      <div class="meal"><div class="lbl">Desayuno</div><div class="food">Jugo de papaya y fresa + avena (½ taza) + queso fresco</div></div>
-      <div class="meal"><div class="lbl">Media mañana</div><div class="food">Sandía + 3 jamón de pavo</div></div>
-      <div class="meal"><div class="lbl">Almuerzo</div><div class="food">Pechuga a la plancha + camote + ensalada cocida</div></div>
-      <div class="meal"><div class="lbl">Media tarde (pre-fontón)</div><div class="food">Yogurt + manzana</div></div>
-      <div class="meal"><div class="lbl">Noche</div><div class="food">Filete de pescado + verduras salteadas + ¼ de palta</div></div>
+    <div class="day" data-date="2026-06-19">
+      <div class="head"><h2>Viernes 19</h2><span class="tag">Fontón tarde</span></div>
+      <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo de papaya y fresa + avena (½ taza) + queso fresco</div></div></div>
+      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Sandía + 3 jamón de pavo</div></div></div>
+      <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Pechuga a la plancha + camote + ensalada cocida</div></div></div>
+      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">Yogurt + manzana</div></div></div>
+      <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Filete de pescado + ensalada cocida + ¼ de palta</div></div></div>
     </div>
 
-    <div class="day free">
-      <h2>Sábado 20 <span>día libre</span></h2>
-      <div class="meal"><div class="lbl">Libre</div><div class="food">Disfrutalo. Consejo, no regla: algo de proteína en cada comida y evitá el atracón de frito pesado (te cae mal). Lo demás, libre.</div></div>
+    <div class="day" data-date="2026-06-20">
+      <div class="head"><h2>Sábado 20</h2><span class="tag">Libre</span></div>
+      <div class="free-body">Día libre</div>
     </div>
 
-    <div class="day">
-      <h2>Domingo 21 <span>mamá · sencillo</span></h2>
-      <div class="meal"><div class="lbl">Desayuno</div><div class="food">Jugo natural + 3 huevos</div></div>
-      <div class="meal"><div class="lbl">Media mañana</div><div class="food">Fruta (la que haya)</div></div>
-      <div class="meal"><div class="lbl">Almuerzo</div><div class="food">Pechuga a la plancha con camote + ensalada</div></div>
-      <div class="meal"><div class="lbl">Media tarde</div><div class="food">Yogurt</div></div>
-      <div class="meal"><div class="lbl">Noche</div><div class="food">Atún con ensalada fresca (sin cocción)</div></div>
+    <div class="day" data-date="2026-06-21">
+      <div class="head"><h2>Domingo 21</h2><span class="tag">Sencillo</span></div>
+      <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo natural + 3 huevos</div></div></div>
+      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Fruta (la que haya)</div></div></div>
+      <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Pechuga a la plancha + camote + ensalada cocida</div></div></div>
+      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">Yogurt</div></div></div>
+      <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Atún con ensalada cocida</div></div></div>
     </div>
 
   </div>
   <!-- ====== FIN MENÚ SEMANAL ====== -->
 
-  <footer>Actualizado automáticamente cada semana · Sergio</footer>
+  <footer>Se actualiza cada semana · Sergio</footer>
 </div>
+
+<script>
+  (function(){
+    var t = new Date();
+    var s = t.getFullYear() + "-" + String(t.getMonth()+1).padStart(2,"0") + "-" + String(t.getDate()).padStart(2,"0");
+    document.querySelectorAll(".day").forEach(function(card){
+      if(card.getAttribute("data-date") === s){
+        card.classList.add("today");
+        var b = document.createElement("span");
+        b.className = "hoy-badge";
+        b.textContent = "HOY";
+        card.querySelector(".head h2").appendChild(b);
+      }
+    });
+  })();
+</script>
 </body>
 </html>
