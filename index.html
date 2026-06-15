@@ -21,13 +21,7 @@
   .dates{display:inline-block;margin-top:10px;background:var(--brand);color:#fff;
     font-size:1.15rem;font-weight:700;padding:8px 20px;border-radius:999px}
 
-  .guide{background:#fffdf8;border:1px solid var(--line);border-left:6px solid var(--hoy);
-    border-radius:14px;padding:18px 22px;margin:22px auto 30px;max-width:900px;font-size:1.08rem;line-height:1.6}
-  .guide .t{font-weight:800;font-size:1.15rem;display:block;margin-bottom:6px}
-  .guide b{color:var(--ink)}
-  .mark{background:var(--hoy);color:#fff;font-weight:800;padding:1px 9px;border-radius:6px;font-size:.95em}
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px;margin-top:28px}
 
   .day{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
     box-shadow:0 2px 6px rgba(40,30,10,.05);display:flex;flex-direction:column}
@@ -75,27 +69,22 @@
     <!-- FIN_FECHA -->
   </header>
 
-  <div class="guide">
-    <span class="t">👩‍🍳 Para mamá y la señora</span>
-    Esta es la comida de Sergio para la semana. <b>Cada tarjeta es un día.</b> Las comidas van en orden, de arriba hacia abajo: desayuno, media mañana, almuerzo, media tarde y noche. El día de hoy aparece marcado con <span class="mark">HOY</span> en amarillo para ubicarlo rápido. El <b>sábado es libre</b>: no hay que preparar nada. Si algo no se entiende, pregúntenle a Sergio.
-  </div>
-
   <!-- ====== INICIO MENÚ SEMANAL (esto se reemplaza cada semana) ====== -->
   <div class="grid">
 
     <div class="day" data-date="2026-06-15">
       <div class="head"><h2>Lunes 15</h2><span class="tag">Gym 7am</span></div>
       <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo de papaya y piña + avena (½ taza cocida) + 3 claras y 1 yema</div></div></div>
-      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Yogurt griego con arándanos</div></div></div>
+      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Yogurt con chía y frambuesa</div></div></div>
       <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Pechuga a la plancha + camote + ensalada cocida</div></div></div>
       <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">3 jamón de pavo + manzana</div></div></div>
-      <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Filete de pescado + verduras salteadas</div></div></div>
+      <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Hamburguesa de atún + ensalada cocida</div></div></div>
     </div>
 
     <div class="day" data-date="2026-06-16">
       <div class="head"><h2>Martes 16</h2><span class="tag">Gym 7am</span></div>
       <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo de fresa y arándanos + pan pita + queso fresco</div></div></div>
-      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Skyr con chía y frambuesas</div></div></div>
+      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Skyr con chía y frambuesa</div></div></div>
       <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Bistec a la plancha + ¾ taza de arroz + ensalada cocida</div></div></div>
       <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">3 claras 1 yema + ¼ de palta</div></div></div>
       <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Tortilla de zucchini y cebolla + ½ pechuga a la plancha</div></div></div>
@@ -104,7 +93,7 @@
     <div class="day" data-date="2026-06-17">
       <div class="head"><h2>Miércoles 17</h2><span class="tag">Gym 7am</span></div>
       <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo de papaya y arándanos + avena (½ taza) + 3 jamón de pavo</div></div></div>
-      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">½ taza de piña + yogurt</div></div></div>
+      <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">½ taza de piña + yogurt con chía y canela</div></div></div>
       <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Hamburguesa de atún + camote + ensalada cocida</div></div></div>
       <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">Queso fresco + mandarina</div></div></div>
       <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Pollo saltado con verduras (poco aceite)</div></div></div>
@@ -124,7 +113,7 @@
       <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo de papaya y fresa + avena (½ taza) + queso fresco</div></div></div>
       <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Sandía + 3 jamón de pavo</div></div></div>
       <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Pechuga a la plancha + camote + ensalada cocida</div></div></div>
-      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">Yogurt + manzana</div></div></div>
+      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">Yogurt con chía y canela + manzana</div></div></div>
       <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Filete de pescado + ensalada cocida + ¼ de palta</div></div></div>
     </div>
 
@@ -138,7 +127,7 @@
       <div class="meal d"><div class="bar"></div><div class="body"><div class="lbl">🍳 Desayuno</div><div class="food">Jugo natural + 3 huevos</div></div></div>
       <div class="meal m"><div class="bar"></div><div class="body"><div class="lbl">🍎 Media mañana</div><div class="food">Fruta (la que haya)</div></div></div>
       <div class="meal a"><div class="bar"></div><div class="body"><div class="lbl">🍽️ Almuerzo</div><div class="food">Pechuga a la plancha + camote + ensalada cocida</div></div></div>
-      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">Yogurt</div></div></div>
+      <div class="meal t"><div class="bar"></div><div class="body"><div class="lbl">🥪 Media tarde</div><div class="food">Yogurt con chía y frambuesa</div></div></div>
       <div class="meal n"><div class="bar"></div><div class="body"><div class="lbl">🌙 Noche</div><div class="food">Atún con ensalada cocida</div></div></div>
     </div>
 
