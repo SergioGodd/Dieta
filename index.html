@@ -51,6 +51,13 @@
 
   .free-body{padding:34px 20px;text-align:center;color:var(--soft);font-size:1.2rem;font-weight:700}
 
+  .day.past{display:none}
+  .prev-toggle{display:block;margin:0 auto 22px;background:#fff;border:1px solid var(--line);
+    color:var(--soft);font-size:1rem;font-weight:700;padding:11px 24px;border-radius:999px;cursor:pointer;
+    box-shadow:0 2px 6px rgba(40,30,10,.05);font-family:inherit}
+  .prev-toggle:hover{background:#faf6ee}
+  .prev-toggle .arrow{font-size:.9em;margin-left:4px}
+
   footer{text-align:center;color:var(--soft);font-size:.92rem;margin-top:34px}
 
   @media (max-width:560px){
@@ -140,16 +147,41 @@
 <script>
   (function(){
     var t = new Date();
-    var s = t.getFullYear() + "-" + String(t.getMonth()+1).padStart(2,"0") + "-" + String(t.getDate()).padStart(2,"0");
+    var hoy = t.getFullYear() + "-" + String(t.getMonth()+1).padStart(2,"0") + "-" + String(t.getDate()).padStart(2,"0");
+    var pasados = 0;
     document.querySelectorAll(".day").forEach(function(card){
-      if(card.getAttribute("data-date") === s){
+      var d = card.getAttribute("data-date");
+      if(d === hoy){
         card.classList.add("today");
         var b = document.createElement("span");
         b.className = "hoy-badge";
         b.textContent = "HOY";
         card.querySelector(".head h2").appendChild(b);
+      } else if(d < hoy){
+        card.classList.add("past");
+        pasados++;
       }
     });
+    if(pasados > 0){
+      var grid = document.querySelector(".grid");
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "prev-toggle";
+      var abierto = false;
+      function pintar(){
+        btn.innerHTML = (abierto ? "Ocultar días anteriores" : "Ver días anteriores (" + pasados + ")") +
+          ' <span class="arrow">' + (abierto ? "▴" : "▾") + "</span>";
+      }
+      pintar();
+      btn.addEventListener("click", function(){
+        abierto = !abierto;
+        document.querySelectorAll(".day.past").forEach(function(c){
+          c.style.display = abierto ? "flex" : "none";
+        });
+        pintar();
+      });
+      grid.parentNode.insertBefore(btn, grid);
+    }
   })();
 </script>
 </body>
